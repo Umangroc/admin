@@ -1,4 +1,22 @@
-<button type="submit" class="btn btn-primary" id="getdata" (click)="getdata()">Submit</button>
-<div *ngFor="let note of user">
-        <p>{{note.firstName}}</p>
+<button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+<div class="card-deck">
+    <div class="card bg-warning">
+      <div class="card-body text-center">
+            <button type="submit" class="btn btn-primary" id="advancedata" (click)="advancedata()">Advance</button>
+        <p class="advance">a</p>
+      </div>
     </div>
+    <div class="card bg-success">
+      <div class="card-body text-center">
+        <button type="submit" class="btn btn-primary" id="basicdata" (click)="basicdata()">Basic</button>
+        <p class="basic">b</p>
+      </div>
+    </div>
+  </div>
+<br><input id="search" placeholder="Search" (click)="search()">
+<table class="table-bordered" style="width: 100%;">
+    <thead class="thead-dark">
+        
+    </thead>
+
+</table>
