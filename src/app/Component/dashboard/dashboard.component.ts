@@ -47,6 +47,30 @@ export class DashboardComponent implements OnInit {
   
   }
 
+  getdata(){
+    $.ajax({
+      url: 'http://fundoonotes.incubation.bridgelabz.com/api/user/getAdminUserList',
+      type: 'GET',
+      dataType: 'json',
+      data: this.hello,
+      success: (res) => {
+        var i = 0;
+        var srno = 1;
+        //console.log(res.data.data[0].firstName);
+        $("table").html("<tr><th>S. No.</th><th>FirstName</th><th>LastName</th><th>Email</th><th>Service</th></tr>");
+        
+        do {
+              $("table").append("<tr><th>" + srno + ".</th><th>" + res.data.data[i].firstName + "</th><th>" + res.data.data[i].lastName + "</th><th>" + res.data.data[i].email + "</th><th>" + res.data.data[i].service + "</th></tr>");
+            srno++;
+            i++;
+          } while (i < res.data.data.length);
+          return srno;
+      },
+      error: function () {
+        console.log('Error in Operation');
+      }
+    });
+  }
 
   advancedata() {
     $.ajax({
@@ -66,7 +90,7 @@ export class DashboardComponent implements OnInit {
             srno++;
             }
             i++;
-          } while (i < 1000);
+          } while (i < res.data.data.length);
           return srno;
       },
       error: function () {
@@ -88,12 +112,12 @@ export class DashboardComponent implements OnInit {
         //console.log(res.data.data[0].firstName);
         $("table").html("<tr><th>S. No.</th><th>FirstName</th><th>LastName</th><th>Email</th><th>Service</th></tr>");
           do {
-            if (res.data.data[i].service == "Basic") {
+            if (res.data.data[i].service == "basic") {
               $("table").append("<tr><th>" + srno + ".</th><th>" + res.data.data[i].firstName + "</th><th>" + res.data.data[i].lastName + "</th><th>" + res.data.data[i].email + "</th><th>" + res.data.data[i].service + "</th></tr>");
             srno++;
             }
             i++;
-          } while (i < 1000);
+          } while (i < res.data.data.length);
           console.log(srno);
           
           return srno;

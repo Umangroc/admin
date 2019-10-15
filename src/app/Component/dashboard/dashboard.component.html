@@ -1,4 +1,11 @@
-<button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<div class="row">
+    <div class="col-sm-1"><button type="submit" class="btn btn-primary" (click)="getdata()">All Users</button>
+    </div>
+  <div class="col-sm-10"></div>
+  <div class="col-sm-1"><button type="submit" class="btn btn-primary" (click)="logout()">Logout</button>
+  </div>
+</div>
 <div class="card-deck">
     <div class="card bg-warning">
       <div class="card-body text-center">
@@ -13,7 +20,11 @@
       </div>
     </div>
   </div>
-<br><input id="search" placeholder="Search" (click)="search()">
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <input id="search" placeholder="Search" class="form-control" (click)="search()">
+  </div>
+
 <table class="table-bordered" style="width: 100%;">
     <thead class="thead-dark">
         
