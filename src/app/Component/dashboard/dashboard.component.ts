@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   hello: any;
   user: any;
-
+  questions: any;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -141,5 +141,57 @@ export class DashboardComponent implements OnInit {
   logout(){
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  request(){
+    $.ajax({
+      url: 'http://fundoonotes.incubation.bridgelabz.com/api/questionAndAnswerNotes/getUnApprovedAnswer',
+      type: 'GET',
+      headers:{  Authorization:localStorage.getItem('id') },
+      dataType: 'json',
+      success: (res) => {
+       this.questions= res.data;
+       $("table").html("");
+      console.log(res);
+      },
+      error: function () {
+        console.log('Error in Operation');
+      }
+    });
+
+  }
+
+  approve(answerid){
+    $.ajax({
+      url: 'http://fundoonotes.incubation.bridgelabz.com/api/questionAndAnswerNotes/approve/' + answerid,
+      type: 'POST',
+      headers:{  Authorization:localStorage.getItem('id') },
+      dataType: 'json',
+      success: (res) => {
+      console.log(res);
+      this.request();
+      },
+      error: function () {
+        console.log('Error in Operation');
+      }
+    });
+
+  }
+
+  reject(answerid){
+    $.ajax({
+      url: 'http://fundoonotes.incubation.bridgelabz.com/api/questionAndAnswerNotes/reject/' + answerid,
+      type: 'POST',
+      headers:{  Authorization:localStorage.getItem('id') },
+      dataType: 'json',
+      success: (res) => {
+      console.log(res);
+      this.request();
+      },
+      error: function () {
+        console.log('Error in Operation');
+      }
+    });
+
   }
 }
